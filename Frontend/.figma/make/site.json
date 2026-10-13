@@ -1,0 +1,10 @@
+{
+  "description": "An interactive ecommerce platform offering a seamless bike shopping experience with detailed catalogs, real-time cart updates, and localized pricing in Colombian pesos.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

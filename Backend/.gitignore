@@ -1,0 +1,12 @@
+node_modules/
+.env
+.env.local
+.env.development
+.env.production
+.env.*.local
+npm-debug.log*
+
+uploads/productos/*
+!uploads/productos/.gitkeep
+
+**/package-lock.json
