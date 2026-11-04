@@ -66,7 +66,7 @@ export interface Order {
   status: OrderStatus;
 }
 
-export type PageType = 'home' | 'catalog' | 'product' | 'about' | 'offers' | 'checkout' | 'confirmation' | 'orders' | 'admin';
+export type PageType = 'home' | 'catalog' | 'product' | 'about' | 'offers' | 'checkout' | 'confirmation' | 'orders' | 'account' | 'wishlist' | 'admin';
 export type CategoryFilter = 'all' | 'mtb' | 'ruta' | 'urbana' | 'electrica' | 'accesorios';
 export type AdminView = 'dashboard' | 'productos' | 'pedidos' | 'usuarios' | 'reportes';
 

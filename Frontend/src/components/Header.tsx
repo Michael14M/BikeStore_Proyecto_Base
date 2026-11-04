@@ -133,21 +133,21 @@ export default function Header({
                           onClick={() => { navigate({ page: 'admin', adminView: 'dashboard' }); setUserMenuOpen(false); }}
                           className="w-full flex items-center gap-3 px-5 py-3 font-['Inter'] font-semibold text-[#b8920a] text-[13px] hover:bg-[#fffbea] transition-colors cursor-pointer text-left"
                         >
-                          <span>🛠️</span>
+                          <span className="w-4 h-4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M14 7 17 4l3 3-3 3M4 20l9-9M7 4l3 3-3 3-3-3 3-3Z"/></svg></span>
                           Panel de administración
                         </button>
                       )}
                       {[
-                        { label: 'Mis pedidos', icon: '📦', action: () => { navigate({ page: 'orders' }); setUserMenuOpen(false); } },
-                        { label: 'Mi cuenta', icon: '👤', action: undefined },
-                        { label: 'Lista de deseos', icon: '❤️', action: undefined },
+                        { label: 'Mis pedidos', icon: 'package', action: () => { navigate({ page: 'orders' }); setUserMenuOpen(false); } },
+                        { label: 'Mi cuenta', icon: 'user', action: () => { navigate({ page: 'account' }); setUserMenuOpen(false); } },
+                        { label: 'Lista de deseos', icon: 'heart', action: () => { navigate({ page: 'wishlist' }); setUserMenuOpen(false); } },
                       ].map(({ label, icon, action }) => (
                         <button
                           key={label}
                           onClick={action}
                           className="w-full flex items-center gap-3 px-5 py-3 font-['Inter'] font-normal text-gray-700 text-[13px] hover:bg-gray-50 transition-colors cursor-pointer text-left"
                         >
-                          <span>{icon}</span>
+                          <span className="w-4 h-4 shrink-0 text-gray-600">{icon === 'package' ? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="m12 3 9 5-9 5-9-5 9-5Z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/></svg> : icon === 'user' ? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg> : <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M20.8 8.8c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.8 4.8 0 0 1 12 6.1a4.8 4.8 0 0 1 8.8 2.7Z"/></svg>}</span>
                           {label}
                         </button>
                       ))}
@@ -156,7 +156,7 @@ export default function Header({
                           onClick={() => { onLogout(); setUserMenuOpen(false); }}
                           className="w-full flex items-center gap-3 px-5 py-3 font-['Inter'] font-semibold text-red-500 text-[13px] hover:bg-red-50 transition-colors cursor-pointer text-left"
                         >
-                          <span>🚪</span>
+                          <span className="w-4 h-4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M10 17l5-5-5-5M15 12H3M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7"/></svg></span>
                           Cerrar sesión
                         </button>
                       </div>

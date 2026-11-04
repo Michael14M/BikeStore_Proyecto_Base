@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 
 const authRoutes = require("./routes/auth.routes");
+const wishlistRoutes = require("./routes/wishlist.routes");
 const productosRoutes = require("./routes/productos.routes");
 const carritoRoutes = require("./routes/carrito.routes");
 const pedidosRoutes = require("./routes/pedidos.routes");
@@ -28,6 +29,7 @@ app.get("/api/health", (req, res) => {
 });
 
 app.use("/api/auth", authRoutes);
+app.use("/api/lista-deseos", wishlistRoutes);
 app.use("/api/productos", productosRoutes);
 app.use("/api/carrito", carritoRoutes);
 app.use("/api/pedidos", pedidosRoutes);

@@ -174,4 +174,18 @@ async function resetPassword({ token, password }) {
   return { message: 'Contraseña actualizada correctamente. Ya puedes iniciar sesión.' };
 }
 
-module.exports = { registerUser, loginUser, getMe, forgotPassword, resetPassword };
+async function updateMe(id, data) {
+  const pool = require('../config/db');
+  const AppError = require('../utils/AppError');
+  const nombre = String(data.nombre ?? '').trim();
+  const email = String(data.email ?? '').trim().toLowerCase();
+  if (!nombre || nombre.length > 100) throw new AppError('El nombre es obligatorio y debe tener máximo 100 caracteres', 400);
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 150) throw new AppError('Correo electrónico inválido', 400);
+  const [dupes] = await pool.execute('SELECT id_usuario FROM usuarios WHERE email = ? AND id_usuario <> ?', [email, id]);
+  if (dupes.length) throw new AppError('Ese correo ya está registrado', 409);
+  await pool.execute('UPDATE usuarios SET nombre = ?, email = ? WHERE id_usuario = ?', [nombre, email, id]);
+  const [rows] = await pool.execute('SELECT id_usuario, nombre, email, rol, activo FROM usuarios WHERE id_usuario = ?', [id]);
+  return rows[0];
+}
+
+module.exports = { registerUser, loginUser, getMe, forgotPassword, resetPassword, updateMe };

@@ -32,6 +32,13 @@ async function me(req, res, next) {
     }
 }
 
+async function updateMe(req, res, next) {
+    try {
+        const user = await authService.updateMe(req.user.id_usuario, req.body);
+        return res.json({ ok: true, message: 'Perfil actualizado', user });
+    } catch (error) { next(error); }
+}
+
 async function forgotPassword(req, res, next) {
     try {
         const result = await authService.forgotPassword(req.body.email);
@@ -50,4 +57,4 @@ async function resetPassword(req, res, next) {
     }
 }
 
-module.exports = { register, login, me, forgotPassword, resetPassword };
+module.exports = { register, login, me, updateMe, forgotPassword, resetPassword };

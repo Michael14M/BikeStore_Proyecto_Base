@@ -22,6 +22,8 @@ import OffersPage from './pages/OffersPage';
 import CheckoutPage from './pages/CheckoutPage';
 import ConfirmationPage from './pages/ConfirmationPage';
 import MyOrdersPage from './pages/MyOrdersPage';
+import AccountPage from './pages/AccountPage';
+import WishlistPage from './pages/WishlistPage';
 import AdminApp from './admin/AdminApp';
 
 export default function App() {
@@ -112,7 +114,7 @@ export default function App() {
     setUser(null);
     resetAdminData();
     resetCartView(); // el carrito sigue guardado en MySQL y vuelve al iniciar sesión
-    if (nav.page === 'checkout' || nav.page === 'confirmation' || nav.page === 'admin' || nav.page === 'orders') {
+    if (nav.page === 'checkout' || nav.page === 'confirmation' || nav.page === 'admin' || nav.page === 'orders' || nav.page === 'account' || nav.page === 'wishlist') {
       navigate({ page: 'home' });
     }
   };
@@ -137,7 +139,7 @@ export default function App() {
     if (authReady && nav.page === 'admin' && !isAdmin) {
       navigate({ page: 'home' });
     }
-    if (authReady && nav.page === 'orders' && !user) {
+    if (authReady && ['orders', 'account', 'wishlist'].includes(nav.page) && !user) {
       navigate({ page: 'home' });
     }
   }, [authReady, nav.page, isAdmin, user]);
@@ -282,6 +284,12 @@ export default function App() {
         )}
         {nav.page === 'orders' && user && (
           <MyOrdersPage navigate={navigate} />
+        )}
+        {nav.page === 'account' && user && (
+          <AccountPage user={user} onUpdated={setUser} />
+        )}
+        {nav.page === 'wishlist' && user && (
+          <WishlistPage navigate={navigate} />
         )}
         {nav.page === 'confirmation' && user && confirmedOrder && (
           <ConfirmationPage

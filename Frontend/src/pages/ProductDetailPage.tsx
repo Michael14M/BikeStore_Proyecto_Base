@@ -3,6 +3,9 @@ import type { NavigationState, Product } from '../types';
 import { formatCOP } from '../data';
 import { useActiveProducts } from '../store/productStore';
 import StarRating from '../components/StarRating';
+import { addWishlist } from '../services/customerService';
+import { getToken } from '../services/apiClient';
+import { showToast } from '../lib/toast';
 
 interface ProductDetailPageProps {
   product: Product;
@@ -13,6 +16,16 @@ interface ProductDetailPageProps {
 export default function ProductDetailPage({ product, navigate, addToCart }: ProductDetailPageProps) {
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
+  const [savingFavorite, setSavingFavorite] = useState(false);
+
+  const handleFavorite = async () => {
+    if (!getToken()) { showToast('Inicia sesión para guardar productos en tu lista de deseos.'); return; }
+    if (!product.idProducto || savingFavorite) return;
+    setSavingFavorite(true);
+    try { await addWishlist(product.idProducto); showToast('Producto agregado a tu lista de deseos.', 'success'); }
+    catch (error) { showToast(error instanceof Error ? error.message : 'No se pudo guardar el favorito.'); }
+    finally { setSavingFavorite(false); }
+  };
 
   const handleAdd = () => {
     for (let i = 0; i < quantity; i++) addToCart(product);
@@ -162,6 +175,10 @@ export default function ProductDetailPage({ product, navigate, addToCart }: Prod
                   </button>
                 </div>
               </div>
+
+              <button onClick={handleFavorite} disabled={savingFavorite} className="w-full py-3 rounded-xl border border-[#3a3d46] font-['Montserrat'] font-bold text-[13px] text-gray-200 hover:border-[#ffd400] hover:text-[#ffd400] transition-colors cursor-pointer disabled:opacity-50">
+                {savingFavorite ? 'GUARDANDO…' : '♡  AGREGAR A LISTA DE DESEOS'}
+              </button>
 
               <button
                 onClick={handleAdd}

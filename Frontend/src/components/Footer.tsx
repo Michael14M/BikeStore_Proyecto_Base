@@ -94,7 +94,7 @@ export default function Footer({ navigate }: FooterProps) {
       <div className="flex flex-col gap-6 items-start w-full">
         <div className="bg-[#2c2f36] h-px w-full" />
         <div className="flex font-['Inter'] font-normal items-center justify-between text-[#888c94] text-[12px] w-full">
-          <p>© 2024 BIKE STORE. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} BIKE STORE. Todos los derechos reservados.</p>
           <div className="flex gap-6 items-start">
             <button className="hover:text-[#ffd400] transition-colors cursor-pointer">Política de Privacidad</button>
             <button className="hover:text-[#ffd400] transition-colors cursor-pointer">Términos y Condiciones</button>

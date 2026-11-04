@@ -56,3 +56,14 @@ Estas son pruebas de contratos/estructura del código y de la corrección del or
 - La recuperación de contraseña usa un token de desarrollo mientras no se configure un proveedor de correo.
 - El checkout registra el pedido y el método de pago elegido, pero no procesa pagos reales con una pasarela.
 - No se debe considerar esta versión validada para producción hasta ejecutar las pruebas de extremo a extremo en el entorno local con MySQL.
+
+## Mejoras de perfil y lista de deseos
+
+Para habilitar las nuevas funciones de cliente, ejecutar una sola vez en MySQL Workbench el script `sql/bike_store_migration_perfil_deseos.sql` sobre la base `bike_store`. La migración crea la tabla `lista_deseos` sin borrar ni modificar datos existentes.
+
+- `PUT /api/auth/me`: actualiza nombre y correo del usuario autenticado.
+- `GET /api/lista-deseos`: consulta los favoritos del usuario autenticado.
+- `POST /api/lista-deseos` con `{ "id_producto": 1 }`: agrega un producto.
+- `DELETE /api/lista-deseos/:id`: elimina un favorito del usuario autenticado.
+
+La lista de deseos se almacena en MySQL y cada consulta/modificación queda limitada al ID del usuario del JWT.
