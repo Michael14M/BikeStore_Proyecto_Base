@@ -87,6 +87,18 @@ export default function Header({
             </div>
           </button>
 
+          {/* Favorites — acceso directo a la lista de deseos */}
+          <button
+            onClick={() => user ? navigate({ page: 'wishlist' }) : onAuthOpen('login')}
+            className="relative flex items-center justify-center size-10 hover:opacity-70 transition-opacity cursor-pointer rounded-full hover:bg-black/5"
+            aria-label="Lista de deseos"
+            title="Favoritos"
+          >
+            <svg className="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M20.8 8.8c0 5.2-8.8 11-8.8 11s-8.8-5.8-8.8-11A4.8 4.8 0 0 1 12 6.1a4.8 4.8 0 0 1 8.8 2.7Z" />
+            </svg>
+          </button>
+
           {/* Cart */}
           <button
             onClick={onCartOpen}
@@ -140,7 +152,6 @@ export default function Header({
                       {[
                         { label: 'Mis pedidos', icon: 'package', action: () => { navigate({ page: 'orders' }); setUserMenuOpen(false); } },
                         { label: 'Mi cuenta', icon: 'user', action: () => { navigate({ page: 'account' }); setUserMenuOpen(false); } },
-                        { label: 'Lista de deseos', icon: 'heart', action: () => { navigate({ page: 'wishlist' }); setUserMenuOpen(false); } },
                       ].map(({ label, icon, action }) => (
                         <button
                           key={label}
@@ -151,15 +162,6 @@ export default function Header({
                           {label}
                         </button>
                       ))}
-                      <div className="border-t border-gray-100 mt-1 pt-1">
-                        <button
-                          onClick={() => { onLogout(); setUserMenuOpen(false); }}
-                          className="w-full flex items-center gap-3 px-5 py-3 font-['Inter'] font-semibold text-red-500 text-[13px] hover:bg-red-50 transition-colors cursor-pointer text-left"
-                        >
-                          <span className="w-4 h-4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M10 17l5-5-5-5M15 12H3M12 3h7a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-7"/></svg></span>
-                          Cerrar sesión
-                        </button>
-                      </div>
                     </div>
                   </div>
                 )}

@@ -67,3 +67,9 @@ Para habilitar las nuevas funciones de cliente, ejecutar una sola vez en MySQL W
 - `DELETE /api/lista-deseos/:id`: elimina un favorito del usuario autenticado.
 
 La lista de deseos se almacena en MySQL y cada consulta/modificación queda limitada al ID del usuario del JWT.
+
+## Corrección de Direcciones de Envío (noviembre 2026)
+- El listado `GET /api/pedidos` ahora incluye `direccion`, `ciudad` y `telefono` del pedido.
+- La pestaña Direcciones de Mi Cuenta utiliza esos campos del listado, sin disparar consultas paralelas repetidas de detalle.
+- Se eliminó el efecto que podía volver a solicitar indefinidamente los detalles cuando alguna consulta fallaba, provocando que la pestaña pareciera congelada.
+- No requiere migración SQL: los campos ya existen en la tabla `pedidos`.

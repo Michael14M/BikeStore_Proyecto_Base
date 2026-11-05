@@ -125,7 +125,8 @@ async function crearPedido(id_usuario, datos) {
 
 async function getPedidosByUsuario(id_usuario) {
   const [rows] = await pool.execute(
-    `SELECT id_pedido, numero_pedido, subtotal, envio, total, metodo_pago, estado, fecha
+    `SELECT id_pedido, numero_pedido, subtotal, envio, total, metodo_pago, estado, fecha,
+            direccion, ciudad, telefono
      FROM pedidos WHERE id_usuario = ? ORDER BY fecha DESC`,
     [id_usuario]
   );

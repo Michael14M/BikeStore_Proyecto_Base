@@ -286,7 +286,7 @@ export default function App() {
           <MyOrdersPage navigate={navigate} />
         )}
         {nav.page === 'account' && user && (
-          <AccountPage user={user} onUpdated={setUser} />
+          <AccountPage user={user} onUpdated={setUser} navigate={navigate} onLogout={handleLogout} />
         )}
         {nav.page === 'wishlist' && user && (
           <WishlistPage navigate={navigate} />

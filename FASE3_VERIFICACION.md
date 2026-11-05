@@ -29,3 +29,8 @@
 6. Continuar con login, carrito persistente, pedido, historial y funciones admin. No usar datos reales de tarjeta: el pago sigue siendo simulado.
 
 **Conclusión:** este ZIP es un avance corregido y con verificaciones estáticas, no una certificación de que todos los flujos de extremo a extremo funcionen. No se debe presentar como probado íntegramente hasta completar las comprobaciones pendientes.
+
+## Corrección de direcciones
+- `GET /api/pedidos` entrega también dirección, ciudad y teléfono.
+- La pestaña Direcciones consume directamente los datos del listado y ya no lanza una cadena de peticiones de detalle.
+- No requiere cambios en la base de datos.
