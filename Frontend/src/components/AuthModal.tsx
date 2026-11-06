@@ -147,7 +147,7 @@ export default function AuthModal({ open, initialMode = 'login', onClose, onSucc
         <div className="px-10 pt-8 pb-10">
           {/* Logo */}
           <div className="flex justify-center mb-6">
-            <div className="h-[72px] w-[96px] relative">
+            <div className="h-[72px] w-[152px] relative">
               <img alt="Bike Store" className="absolute inset-0 size-full object-contain" src={imgBrandLogo} />
             </div>
           </div>

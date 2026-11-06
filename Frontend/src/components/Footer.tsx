@@ -19,8 +19,8 @@ export default function Footer({ navigate }: FooterProps) {
     <footer className="bg-black flex flex-col gap-16 items-start pb-10 pt-20 px-16 w-full">
       <div className="flex items-start justify-between w-full gap-8 flex-wrap">
         <div className="flex flex-col gap-6 items-start w-[320px]">
-          <button onClick={() => navigate({ page: 'home' })} className="h-[100px] w-[140px] relative cursor-pointer">
-            <img alt="Bike Store" className="absolute inset-0 size-full object-cover" src={imgBrandLogo} />
+          <button onClick={() => navigate({ page: 'home' })} className="h-[100px] w-[210px] relative cursor-pointer">
+            <img alt="Bike Store" className="absolute inset-0 size-full object-contain" src={imgBrandLogo} />
           </button>
           <p className="font-['Inter'] font-normal leading-[1.6] text-[#888c94] text-[14px]">
             La marca preferida de los ciclistas profesionales y entusiastas del alto rendimiento. Innovación, tecnología y velocidad en cada pedalada.

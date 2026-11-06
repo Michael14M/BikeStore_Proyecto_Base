@@ -49,10 +49,10 @@ export default function Header({
         {/* Logo */}
         <button
           onClick={() => navigate({ page: 'home' })}
-          className="h-[90px] w-[120px] relative shrink-0 cursor-pointer"
+          className="h-[76px] w-[190px] relative shrink-0 cursor-pointer"
           aria-label="Ir al inicio"
         >
-          <img alt="Bike Store" className="absolute inset-0 size-full object-cover" src={imgBrandLogo} />
+          <img alt="Bike Store" className="absolute inset-0 size-full object-contain" src={imgBrandLogo} />
         </button>
 
         {/* Nav */}
